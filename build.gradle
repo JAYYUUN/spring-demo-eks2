@@ -34,3 +34,4 @@ dependencies { //이 프로젝트가 무슨 기능을 가지는지 결정
 tasks.named('test') { //테스트 실행 방식
 	useJUnitPlatform() //테스트는 JUnit 5 방식으로 실행해라
 }
+
