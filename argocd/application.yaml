@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1 # "이 YAML은 Kubernetes가 아니라 Argo CD가 해석한다" 라는 선언
+kind: Application # Git으로 관리되는 하나의 배포 단위
+metadata:
+  name: spring-app # Argo CD 내부에서 이 애플리케이션을 부르는 식별자(ID)이며, Argo CD UI, CLI에서 이 이름으로 보임
+  namespace: argocd
+spec:
+  project: default
+
+ 
+
+# Git 기준 상태
+  source:
+    repoURL: https://github.com/<YOUR_ORG>/<YOUR_REPO> # Argo CD가 감시할 Git 저장소
+    targetRevision: main # 기준 브랜치 = main ( main이 곧 배포 기준 )
+    path: k8s # 저장소 전체가 아니라 k8s/ 폴더만 배포 대상
+
+ 
+
+# 어디에 배포할지
+
+  destination:
+    server: https://kubernetes.default.svc# 배포 대상 Kubernetes 클러스터 ( https://kubernetes.default.svc는 Argo CD가 설치된 같은 클러스터 )
+    namespace: default # 실제로 Deployment / Service가 생성될 네임스페이스
+
+  syncPolicy:
+    automated: # Git 변경이 생기면 자동으로 Sync
+      prune: true # Git에서 삭제된 리소스는 클러스터에서도 자동 삭제
+      selfHeal: true # 누군가 클러스터에서 수동으로 변경하면 (예를 들어 kubectl edit로 콘솔에서 수정하면) Argo CD가 감지해서 Git 상태로 다시 되돌림
+
