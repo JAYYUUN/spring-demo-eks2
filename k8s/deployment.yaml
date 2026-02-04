@@ -4,7 +4,7 @@ metadata:
   name: spring-app # Deployment 이름
   namespace: default
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: spring-app # Deployment가 어떤 파드를 “내 파드”로 관리할지 정하는 기준
@@ -15,6 +15,5 @@ spec:
     spec:
       containers:
         - name: spring-app
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/my-spring-app:5ea18af8e2c587572752fe5edda5b2c618ebfe24
-          ports:
+          image: 586794453466.dkr.ecr.ap-northeast-2.amazonaws.com/my-spring-app:latest
             - containerPort: 8080 # 컨테이너 내부에서 애플리케이션이 듣는 포트 ( Service의 targetPort: 8080과 1:1 매칭 )
