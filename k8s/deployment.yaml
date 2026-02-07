@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: spring-app
-          image: 586794453466.dkr.ecr.ap-northeast-2.amazonaws.com/my-spring-app:REPLACE_ME
+          image: 586794453466.dkr.ecr.ap-northeast-2.amazonaws.com/my-spring-app:da0e7d04df5e785bdd61c11dba251c7798125b56
           ports:
             - containerPort: 8080 # 컨테이너 내부에서 애플리케이션이 듣는 포트 ( Service의 targetPort: 8080과 1:1 매칭 )
