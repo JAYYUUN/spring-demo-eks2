@@ -6,7 +6,13 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-spec:
+    # 80/443 둘 다 리슨하게
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+    # ACM 인증서 ARN ( Terraform output으로 받은 값)
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:586794453466:certificate/098c7cf3-1bf8-48bd-a824-da00eecd171f
+    # HTTP로 들어오면 HTTPS로 리다이렉트(권장)
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+specS:
   ingressClassName: alb
   rules:
     - host: yunhwan.click
@@ -18,4 +24,4 @@ spec:
               service:
                 name: spring-app
                 port:
-                  number: 80
+                  number: 80 
