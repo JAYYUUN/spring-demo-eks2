@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:586794453466:certificate/098c7cf3-1bf8-48bd-a824-da00eecd171f
     alb.ingress.kubernetes.io/ssl-redirect: "443"
-specS:
+spec:
   ingressClassName: alb
   rules:
     - host: app.yunhwan.click
