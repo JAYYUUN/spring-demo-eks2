@@ -12,7 +12,7 @@ metadata:
 specS:
   ingressClassName: alb
   rules:
-    - host: yunhwan.click
+    - host: app.yunhwan.click
       http:
         paths:
           - path: /
@@ -22,3 +22,5 @@ specS:
                 name: spring-app
                 port:
                   number: 80 
+
+                  
